@@ -1,3 +1,19 @@
+/*
+ * TODO add testing for setGoalAndPlayer()
+ * TODO add testing for setGoalAndPlayer()
+ * TODO add testing for getValueAt(int[] cord)
+ * TODO add testing for changeValueAt(int[] cord, MapFlags flag)
+ * TODO add testing for	ProtoMap movePTo(int[] cord)
+ * TODO add testing for moveDown()
+ * TODO add testing for moveRight()
+ * TODO add testing for moveLeft()
+ * TODO add testing for moveUp()
+ * TODO add testing for getPlayerPosition()
+ * TODO add testing for getGoalPosition()
+ * TODO add testing for toString()
+ * TODO add testing for equals(ProtoMap other)
+ */
+
 package ProtoPathing.cole;
 
 import static org.junit.Assert.*;
