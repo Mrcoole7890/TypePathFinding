@@ -23,6 +23,7 @@ import java.util.Scanner;
  */
 public class ProtoMap {
 
+	private final String pathToDefaultFile = "src/main/resources/TestMap"; 
 	
 	private enum MapFlags{
 		PLAYER_FLAG('P'), GOAL_FLAG('G'), EMPTY_SPACE(' ');
@@ -38,14 +39,13 @@ public class ProtoMap {
 		}
 	}
 	
-	
 	private ArrayList<String> map; // array of strings that represents the rows of a 2-d rectangular map
 	private int[] playerPosition; // 2-d array that indicates the cords of the player flag
 	private int[] goalPosition; // 2-d array that indicates the cords of the goal flag
 	public boolean goalFound; // this should be a false if a goal flag exists
 	
 	/**
-	 *  When initialized a default file will be attempted to be retrieved
+	 *  When initialized a default file will be attempted to be retrieved from the default file location
 	 *  if the retrieval fails an exception is to be handled and the program should crash
 	 *  otherwise the file will be read and, per line, broken into substrings
 	 *  each substring will be pushed on the map ArrayList
@@ -58,7 +58,7 @@ public class ProtoMap {
 	public ProtoMap() {
 		super();
 		map = new ArrayList<String>();
-		File mapFile = new File("src/main/resources/TestMap");
+		File mapFile = new File(pathToDefaultFile);
 		try {
 			Scanner mapReader = new Scanner(mapFile);
 			while(mapReader.hasNext()) {
