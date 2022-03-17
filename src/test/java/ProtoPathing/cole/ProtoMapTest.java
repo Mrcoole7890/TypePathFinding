@@ -72,12 +72,35 @@ public class ProtoMapTest {
 	
 	/**
 	 * Create an ArrayList of strings
-	 * initialize the ProtoMap with one parameter in the constructor
+	 * initialize the ProtoMap with one ArrayList of strings parameter in the constructor
 	 * assert no errors
 	 */
 	@Test
 	public void testInitializeProtoMapWithOneArrayListParameter() {
+		// Create an ArrayList of strings
+		ArrayList<String> testMap = new ArrayList<String>();
+		testMap.add("XPXXXXXXXXX");
+		testMap.add("X    X   XX");
+		testMap.add("X X X  X XX");
+		testMap.add("X X   XXXXX");
+		testMap.add("X XXXX   XX");
+		testMap.add("X      X XX");
+		testMap.add("XXXXXXXX XX");
+		testMap.add("XX       XX");
+		testMap.add("XXXXXX X XX");
+		testMap.add("XXX    XXXX");
+		testMap.add("XXXGXXXXXXX");
 		
+		// initialize the ProtoMap with one ArrayList of strings parameter in the constructor
+		ProtoMap mapToTest = new ProtoMap(testMap);
+		
+		// assert no errors
+		String mapToTestAsString = mapToTest.toString();
+		    
+		String expected = "";
+		for(String s: testMap) expected += s + "\n";
+		    
+		assertEquals(mapToTestAsString, expected);
 	}
 
 }
