@@ -14,11 +14,11 @@ public class ProtoMapTest {
 	 * Create an ArrayList of strings
 	 * write it to a given file
 	 * retrieve the file
-	 * initialize the ProtoMap with no parameters in the constructor
+	 * initialize the ProtoMap with file path parameters in the constructor
 	 * assert no errors
 	 */
 	@Test
-	public void testInitializeProtoMapWithNoParameters() {
+	public void testInitializeProtoMapWithOneFilePathParameters() {
 		fail("Not yet implemented");
 	}
 	
@@ -29,7 +29,7 @@ public class ProtoMapTest {
 	 * assert no errors
 	 */
 	@Test
-	public void testInitializeProtoMapWithOneParameter() {
+	public void testInitializeProtoMapWithOneArrayListParameter() {
 		
 	}
 
