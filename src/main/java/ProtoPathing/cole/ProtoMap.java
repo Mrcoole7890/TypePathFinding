@@ -76,6 +76,39 @@ public class ProtoMap {
 	}
 	
 	/**
+	 *  @param pathToFile string representation of the map file to be processed
+	 * 
+	 *  When initialized a default file will be attempted to be retrieved from the pathToFile location
+	 *  if the retrieval fails an exception is to be handled and the program should crash
+	 *  otherwise the file will be read and, per line, broken into substrings
+	 *  each substring will be pushed on the map ArrayList
+	 *  finally the playerPosition and goalPosition is to be located and set
+	 *  if a player flag cannot be found an exception is to be handled
+	 *  if a goal flag cannot be found an exception is to be handled  
+	 *  
+	 *  @return instance of a ProtoMap
+	 */
+	public ProtoMap(String pathToFile) {
+		super();
+		map = new ArrayList<String>();
+		File mapFile = new File(pathToFile);
+		try {
+			Scanner mapReader = new Scanner(mapFile);
+			while(mapReader.hasNext()) {
+				String line = mapReader.nextLine();
+				map.add(line);
+			}
+			mapReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		try { this.setGoalAndPlayer(); }
+		catch (ProtoMapPlayerNotFoundException e) { e.printStackTrace(); }
+	    catch (ProtoMapGoalNotFoundException e) { this.goalFound = true; }
+	}
+	
+	/**
 	 *  @param ArrayList of strings that represents the map
 	 *  
 	 *  for each string, in the initMap parameter, it will be pushed on the map ArrayList
