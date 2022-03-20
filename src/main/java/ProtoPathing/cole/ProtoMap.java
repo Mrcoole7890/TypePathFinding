@@ -27,7 +27,7 @@ public class ProtoMap {
 
 	private final String pathToDefaultFile = "src/main/resources/TestMap"; 
 	
-	private enum MapFlags{
+	public enum MapFlags{
 		PLAYER_FLAG('P'), GOAL_FLAG('G'), EMPTY_SPACE(' ');
 		
 		private MapFlags(char value) {
