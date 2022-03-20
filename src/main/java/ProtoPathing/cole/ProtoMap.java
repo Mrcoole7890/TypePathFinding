@@ -70,10 +70,6 @@ public class ProtoMap {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		try { this.setGoalAndPlayer(); }
-		catch (ProtoMapPlayerNotFoundException e) { e.printStackTrace(); }
-	    catch (ProtoMapGoalNotFoundException e) { this.goalFound = true; }
 	}
 	
 	/**
@@ -103,10 +99,6 @@ public class ProtoMap {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		try { this.setGoalAndPlayer(); }
-		catch (ProtoMapPlayerNotFoundException e) { e.printStackTrace(); }
-	    catch (ProtoMapGoalNotFoundException e) { this.goalFound = true; }
 	}
 	
 	/**
@@ -122,10 +114,6 @@ public class ProtoMap {
 	public ProtoMap(ArrayList<String> initMap) {
 		map = new ArrayList<String>();
 		for(String s: initMap) map.add(s);
-		
-		try { this.setGoalAndPlayer(); }
-		catch (ProtoMapPlayerNotFoundException e) { e.printStackTrace(); }
-	    catch (ProtoMapGoalNotFoundException e) { this.goalFound = true; }
 	}
 	
 	/**
@@ -143,7 +131,7 @@ public class ProtoMap {
 	 * @throws ProtoMapPlayerNotFoundException
 	 * @throws ProtoMapGoalNotFoundException
 	 */
-	private void setGoalAndPlayer() throws ProtoMapPlayerNotFoundException, ProtoMapGoalNotFoundException {
+	public void setGoalAndPlayer() throws ProtoMapPlayerNotFoundException, ProtoMapGoalNotFoundException {
 		
 		if (map == null) return;
 		
