@@ -9,6 +9,7 @@
  * TODO for moveUp(), moveDown(), moveLeft(), and moveRight() determine if a throw is necessary
  * TODO add exception to be thrown by the changeValueAt() method where a Invalid coordinate is thrown
  * TODO remove constructor with no parameters and all references to it
+ * TODO add exception to be thrown by movePTo() if the player flag is not set
  */
 
 package ProtoPathing.cole;
