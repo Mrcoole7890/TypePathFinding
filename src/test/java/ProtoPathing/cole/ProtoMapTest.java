@@ -1,8 +1,5 @@
 /*
  * DONE add testing for setGoalAndPlayer()
- * TODO add testing for getValueAt(int[] cord)
- * TODO add testing for changeValueAt(int[] cord, MapFlags flag)
- * TODO add testing for	ProtoMap movePTo(int[] cord)
  * TODO add testing for moveDown()
  * TODO add testing for moveRight()
  * TODO add testing for moveLeft()
@@ -245,5 +242,6 @@ public class ProtoMapTest {
 		
 		fail("No exception was thrown where ProtoMapGoalNotFoundException was expected to be thrown");
 	}
+	
 
 }
