@@ -1,6 +1,6 @@
 /*
  * DONE add testing for setGoalAndPlayer()
- * TODO add testing for moveDown()
+ * DONE add testing for moveDown()
  * TODO add testing for moveRight()
  * TODO add testing for moveLeft()
  * TODO add testing for moveUp()
@@ -243,5 +243,145 @@ public class ProtoMapTest {
 		fail("No exception was thrown where ProtoMapGoalNotFoundException was expected to be thrown");
 	}
 	
+	/**
+	 * create an ArrayList of strings where the player flag is above an open space
+	 * initialize the ProtoMap
+	 * create an expected ArrayList of Strings after the player is moved down
+	 * call the moveDown() method and the expected new ProtoMap is present
+	 */
+	@Test
+	public void testMoveDownWhereAnOpenSpaceIsBelow() {
+	
+		//create an ArrayList of strings where the player flag is above an open space
+		ArrayList<String> testMap = new ArrayList<String>();
+		testMap.add("X"+ MapFlags.PLAYER_FLAG.getValue() +"XXXXXXXXX");
+		testMap.add("X    X   XX");
+		testMap.add("X X X  X XX");
+		testMap.add("X X   XXXXX");
+		testMap.add("X XXXX   XX");
+		testMap.add("X      X XX");
+		testMap.add("XXXXXXXX XX");
+		testMap.add("XX       XX");
+		testMap.add("XXXXXX X XX");
+		testMap.add("XXX    XXXX");
+		testMap.add("XXXGXXXXXXX");
+		
+		//initialize the ProtoMap
+		ProtoMap mapToTest = new ProtoMap(testMap);
+		try {
+			mapToTest.setGoalAndPlayer();
+			try {
+				mapToTest = mapToTest.moveDown();
+			} catch (CannotMovePlayerToCoordinateException e) {
+				fail(e.getMessage());
+			}
+		} catch (ProtoMapPlayerNotFoundException e1) {
+			fail(e1.getMessage());
+		} catch (ProtoMapGoalNotFoundException e1) {
+			fail(e1.getMessage());
+		}
+		
 
+		
+		//create an expected ArrayList of Strings after the player is moved down
+		ArrayList<String> testMapExpected = new ArrayList<String>();
+		testMapExpected.add("X XXXXXXXXX");
+		testMapExpected.add("X"+MapFlags.PLAYER_FLAG.getValue()+"   X   XX");
+		testMapExpected.add("X X X  X XX");
+		testMapExpected.add("X X   XXXXX");
+		testMapExpected.add("X XXXX   XX");
+		testMapExpected.add("X      X XX");
+		testMapExpected.add("XXXXXXXX XX");
+		testMapExpected.add("XX       XX");
+		testMapExpected.add("XXXXXX X XX");
+		testMapExpected.add("XXX    XXXX");
+		testMapExpected.add("XXXGXXXXXXX");
+		
+		//initializes expected ProtoMap
+		ProtoMap mapTobeExpected = new ProtoMap(testMapExpected);
+		
+		assertEquals(mapToTest.toString(), mapTobeExpected.toString());
+	}
+	
+	/**
+	 * create an ArrayList of strings where the player flag is not above an open space
+	 * initialize the ProtoMap
+	 * create an expected ArrayList of Strings after the player is moved down
+	 * call the moveDown() method and the expected exception is to be thrown 
+	 */
+	@Test
+	public void testMoveDownWhereNoOpenSpaceIsBelow() {
+	
+		//create an ArrayList of strings where the player flag is above an open space
+		ArrayList<String> testMap = new ArrayList<String>();
+		testMap.add("X XXXXXXXXX");
+		testMap.add("X "+MapFlags.PLAYER_FLAG.getValue()+"  X   XX");
+		testMap.add("X X X  X XX");
+		testMap.add("X X   XXXXX");
+		testMap.add("X XXXX   XX");
+		testMap.add("X      X XX");
+		testMap.add("XXXXXXXX XX");
+		testMap.add("XX       XX");
+		testMap.add("XXXXXX X XX");
+		testMap.add("XXX    XXXX");
+		testMap.add("XXXGXXXXXXX");
+		
+		//initialize the ProtoMap
+		ProtoMap mapToTest = new ProtoMap(testMap);
+		try {
+			mapToTest.setGoalAndPlayer();
+			try {
+				mapToTest = mapToTest.moveDown();
+			} catch (CannotMovePlayerToCoordinateException e) {
+				return;
+			}
+		} catch (ProtoMapPlayerNotFoundException e1) {
+			fail(e1.getMessage());
+		} catch (ProtoMapGoalNotFoundException e1) {
+			fail(e1.getMessage());
+		}
+		
+		fail("CannotMovePlayerToCoordinateException was not thrown where one should have been thrown");
+	}
+	
+	/**
+	 * create an ArrayList of strings where the player flag is above the out of bounds for the 2-d array
+	 * initialize the ProtoMap
+	 * create an expected ArrayList of Strings after the player is moved down
+	 * call the moveDown() method and the expected exception is to be thrown 
+	 */
+	@Test
+	public void testMoveDownWhere2DArrayOutOfBoundsIsBelow() {
+	
+		//create an ArrayList of strings where the player flag is above an open space
+		ArrayList<String> testMap = new ArrayList<String>();
+		testMap.add("X XXXXXXXXX");
+		testMap.add("X    X   XX");
+		testMap.add("X X X  X XX");
+		testMap.add("X X   XXXXX");
+		testMap.add("X XXXX   XX");
+		testMap.add("X      X XX");
+		testMap.add("XXXXXXXX XX");
+		testMap.add("XX       XX");
+		testMap.add("XXXXXX X XX");
+		testMap.add("XXX    XXXX");
+		testMap.add("XXXGX"+ MapFlags.PLAYER_FLAG.getValue() +"XXXXX");
+		
+		//initialize the ProtoMap
+		ProtoMap mapToTest = new ProtoMap(testMap);
+		try {
+			mapToTest.setGoalAndPlayer();
+			try {
+				mapToTest = mapToTest.moveDown();
+			} catch (CannotMovePlayerToCoordinateException e) {
+				return;
+			}
+		} catch (ProtoMapPlayerNotFoundException e1) {
+			fail(e1.getMessage());
+		} catch (ProtoMapGoalNotFoundException e1) {
+			fail(e1.getMessage());
+		}
+		
+		fail("CannotMovePlayerToCoordinateException was not thrown where one should have been thrown");
+	}
 }
