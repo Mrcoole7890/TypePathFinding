@@ -6,7 +6,7 @@
  * DONE change the value parameter in the changeValueAt to an enumerable rather than a char
  * DONE add exception to be thrown by the getValueAt() method where a Invalid coordinate is thrown
  * DONE add exception to be thrown by the movePTo() method where the given position is not empty or a goal flag
- * TODO for moveUp(), moveDown(), moveLeft(), and moveRight() determine if a throw is necessary
+ * DONE for moveUp(), moveDown(), moveLeft(), and moveRight() determine if a throw is necessary
  * TODO add exception to be thrown by the changeValueAt() method where a Invalid coordinate is thrown
  * TODO remove constructor with no parameters and all references to it
  * TODO add exception to be thrown by movePTo() if the player flag is not set
@@ -181,7 +181,6 @@ public class ProtoMap {
 	 */
 	private ProtoMap changeValueAt(int[] cord, MapFlags flag) {
 		ArrayList<String> tempMap = new ArrayList<String>();
-		
 		for(String s: this.map)
 			tempMap.add(s);
 		
@@ -213,6 +212,13 @@ public class ProtoMap {
 	private ProtoMap movePTo(int[] cord) throws CannotMovePlayerToCoordinateException{
 		
 		ProtoMap tempMap = new ProtoMap(this.map);
+		try {
+			tempMap.setGoalAndPlayer();
+		} catch (ProtoMapPlayerNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (ProtoMapGoalNotFoundException e1) {
+			e1.printStackTrace();
+		}
 		
 		try {
 			if (tempMap.getValueAt(cord) != MapFlags.EMPTY_SPACE.getValue() && tempMap.getValueAt(cord) != MapFlags.GOAL_FLAG.getValue()) 
