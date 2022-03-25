@@ -536,7 +536,7 @@ public class ProtoMapTest {
 	 * call the moveLeft() method and the expected new ProtoMap is present
 	 */
 	@Test
-	public void testMoveLeftWhereAnOpenSpaceIsAbove() {
+	public void testMoveLeftWhereAnOpenSpaceIsOnTheRight() {
 	
 		//create an ArrayList of strings where the player flag is right of an open space
 		ArrayList<String> testMap = new ArrayList<String>();
