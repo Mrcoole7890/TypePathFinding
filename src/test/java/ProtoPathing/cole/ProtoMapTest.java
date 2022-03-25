@@ -10,6 +10,8 @@
  * TODO add testing for equals(ProtoMap other)
  * TODO in all places where a ArrayList of strings is manually created
  *     and is passed into a ProtoMap constructor use a function call to handle the map creation
+ * TODO go through and check Java Docs for inconsistencies within the moveLeft, moveRight, moveUp, and moveDown
+ *     test cases (todo creation date 3/25/2022)
  */
 
 package ProtoPathing.cole;
