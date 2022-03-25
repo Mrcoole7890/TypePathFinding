@@ -10,6 +10,8 @@
  * TODO add exception to be thrown by the changeValueAt() method where a Invalid coordinate is thrown
  * TODO remove constructor with no parameters and all references to it
  * TODO add exception to be thrown by movePTo() if the player flag is not set
+ * TODO go through and check java docs for constancy "I belive there are docs that dont reflect the actual actions of the
+ *    code"
  */
 
 package ProtoPathing.cole;
