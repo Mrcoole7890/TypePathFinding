@@ -8,6 +8,8 @@
  * TODO add testing for getGoalPosition()
  * TODO add testing for toString()
  * TODO add testing for equals(ProtoMap other)
+ * TODO in all places where a ArrayList of strings is manually created
+ *     and is passed into a ProtoMap constructor use a function call to handle the map creation
  */
 
 package ProtoPathing.cole;
