@@ -858,15 +858,15 @@ public class ProtoMapTest {
 	 * create an ArrayList of strings where the player flag is not present
 	 * initialize the ProtoMap
 	 * call getPlayerPosition()
-	 * assert the location is correct
+	 * fail if ProtoMapPlayerNotFoundException is not thrown
 	 */
 	@Test
 	public void testGetPlayerPositionWithMapThatDoesNotHavePlayerFlag() {
 		
-		//create an ArrayList of strings where the player flag is present
+		//create an ArrayList of strings where the player flag is not present
 		ArrayList<String> testMap = new ArrayList<String>();
 		testMap.add("X XXXXXXXXX");
-		testMap.add("X   X   XXX"); // player flag is at 1,11
+		testMap.add("X   X   XXX"); // player flag is at 1,10
 		testMap.add("X X X  X XX");
 		testMap.add("X X   XXXXX");
 		testMap.add("X XXXX   XX");
@@ -886,6 +886,7 @@ public class ProtoMapTest {
 			return;
 		} catch (ProtoMapGoalNotFoundException e) {
 		}
+		//fail if ProtoMapPlayerNotFoundException is not thrown
 		fail("ProtoMapPlayerNotFoundException was not thrown where is should have. Check the mock data.");
 	}
 }
