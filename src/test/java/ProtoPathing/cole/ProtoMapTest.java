@@ -4,7 +4,7 @@
  * DONE add testing for moveRight()
  * DONE add testing for moveLeft()
  * DONE add testing for moveUp()
- * TODO add testing for getPlayerPosition()
+ * DONE add testing for getPlayerPosition()
  * TODO add testing for getGoalPosition()
  * TODO add testing for toString()
  * TODO add testing for equals(ProtoMap other)
@@ -813,5 +813,79 @@ public class ProtoMapTest {
 		}
 		
 		fail("CannotMovePlayerToCoordinateException was not thrown where one should have been thrown");
+	}
+	
+	/**
+	 * create an ArrayList of strings where the player flag is present
+	 * initialize the ProtoMap
+	 * call getPlayerPosition()
+	 * assert the location is correct
+	 */
+	@Test
+	public void testGetPlayerPositionWithMapThatHasPlayerFlag() {
+		
+		//create an ArrayList of strings where the player flag is present
+		ArrayList<String> testMap = new ArrayList<String>();
+		testMap.add("X XXXXXXXXX");
+		testMap.add("X   X   XX"+MapFlags.PLAYER_FLAG.getValue()+""); // player flag is at 1,11
+		testMap.add("X X X  X XX");
+		testMap.add("X X   XXXXX");
+		testMap.add("X XXXX   XX");
+		testMap.add("X      X XX");
+		testMap.add("XXXXXXXX XX");
+		testMap.add("XX       XX");
+		testMap.add("XXXXXX X XX");
+		testMap.add("XXX    XXXX");
+		testMap.add("XXXGXXXXXXX");
+		
+		//initialize the ProtoMap
+		ProtoMap mapToTest = new ProtoMap(testMap);
+		
+		try {
+			mapToTest.setGoalAndPlayer();
+		} catch (ProtoMapPlayerNotFoundException e) {
+			fail("ProtoMapPlayerNotFoundException thrown where it should not have. Check the mock data.");
+		} catch (ProtoMapGoalNotFoundException e) {
+		}
+		
+		int[] cords = mapToTest.getPlayerPosition();
+		
+		assertEquals(cords[0], 1);
+		assertEquals(cords[1], 10);
+	}
+	
+	/**
+	 * create an ArrayList of strings where the player flag is not present
+	 * initialize the ProtoMap
+	 * call getPlayerPosition()
+	 * assert the location is correct
+	 */
+	@Test
+	public void testGetPlayerPositionWithMapThatDoesNotHavePlayerFlag() {
+		
+		//create an ArrayList of strings where the player flag is present
+		ArrayList<String> testMap = new ArrayList<String>();
+		testMap.add("X XXXXXXXXX");
+		testMap.add("X   X   XXX"); // player flag is at 1,11
+		testMap.add("X X X  X XX");
+		testMap.add("X X   XXXXX");
+		testMap.add("X XXXX   XX");
+		testMap.add("X      X XX");
+		testMap.add("XXXXXXXX XX");
+		testMap.add("XX       XX");
+		testMap.add("XXXXXX X XX");
+		testMap.add("XXX    XXXX");
+		testMap.add("XXXGXXXXXXX");
+		
+		//initialize the ProtoMap
+		ProtoMap mapToTest = new ProtoMap(testMap);
+		
+		try {
+			mapToTest.setGoalAndPlayer();
+		} catch (ProtoMapPlayerNotFoundException e) {
+			return;
+		} catch (ProtoMapGoalNotFoundException e) {
+		}
+		fail("ProtoMapPlayerNotFoundException was not thrown where is should have. Check the mock data.");
 	}
 }
