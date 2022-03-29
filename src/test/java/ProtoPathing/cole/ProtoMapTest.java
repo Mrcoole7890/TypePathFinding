@@ -855,42 +855,6 @@ public class ProtoMapTest {
 	}
 	
 	/**
-	 * create an ArrayList of strings where the player flag is not present
-	 * initialize the ProtoMap
-	 * call getPlayerPosition()
-	 * fail if ProtoMapPlayerNotFoundException is not thrown
-	 */
-	@Test
-	public void testGetPlayerPositionWithMapThatDoesNotHavePlayerFlag() {
-		
-		//create an ArrayList of strings where the player flag is not present
-		ArrayList<String> testMap = new ArrayList<String>();
-		testMap.add("X XXXXXXXXX");
-		testMap.add("X   X   XXX"); // player flag is at 1,10
-		testMap.add("X X X  X XX");
-		testMap.add("X X   XXXXX");
-		testMap.add("X XXXX   XX");
-		testMap.add("X      X XX");
-		testMap.add("XXXXXXXX XX");
-		testMap.add("XX       XX");
-		testMap.add("XXXXXX X XX");
-		testMap.add("XXX    XXXX");
-		testMap.add("XXXGXXXXXXX");
-		
-		//initialize the ProtoMap
-		ProtoMap mapToTest = new ProtoMap(testMap);
-		
-		try {
-			mapToTest.setGoalAndPlayer();
-		} catch (ProtoMapPlayerNotFoundException e) {
-			return;
-		} catch (ProtoMapGoalNotFoundException e) {
-		}
-		//fail if ProtoMapPlayerNotFoundException is not thrown
-		fail("ProtoMapPlayerNotFoundException was not thrown where is should have. Check the mock data.");
-	}
-	
-	/**
 	 * create an ArrayList of strings where the goal flag is present
 	 * initialize the ProtoMap
 	 * call getGoalPosition()
@@ -928,43 +892,5 @@ public class ProtoMapTest {
 		
 		assertEquals(cords[0], 10);
 		assertEquals(cords[1], 3);
-	}
-	
-	/**
-	 * create an ArrayList of strings where the goal flag is present
-	 * initialize the ProtoMap
-	 * call getGoalPosition()
-	 * assert the ProtoMapGoalNotFoundException is thrown
-	 */
-	@Test
-	public void testGetGoalPositionWithMapThatDoesNotHaveGoalFlag() {
-		
-		//create an ArrayList of strings where the goal flag is present
-		ArrayList<String> testMap = new ArrayList<String>();
-		testMap.add("X XXXXXXXXX");
-		testMap.add("X   X   XX"+MapFlags.PLAYER_FLAG.getValue()+"");
-		testMap.add("X X X  X XX");
-		testMap.add("X X   XXXXX");
-		testMap.add("X XXXX   XX");
-		testMap.add("X      X XX");
-		testMap.add("XXXXXXXX XX");
-		testMap.add("XX       XX");
-		testMap.add("XXXXXX X XX");
-		testMap.add("XXX    XXXX");
-		testMap.add("XXXXXXXXXXX");
-		
-		//initialize the ProtoMap
-		ProtoMap mapToTest = new ProtoMap(testMap);
-		
-		try {
-			mapToTest.setGoalAndPlayer();
-		} catch (ProtoMapPlayerNotFoundException e) {
-
-		} catch (ProtoMapGoalNotFoundException e) {
-			return; // assert the ProtoMapGoalNotFoundException is thrown
-		}
-		
-		fail("ProtoMapGoalNotFoundException was not thrown where one should have been thrown");
-
 	}
 }
