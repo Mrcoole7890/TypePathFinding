@@ -228,7 +228,6 @@ public class ProtoMap {
 			else {
 				tempMap = tempMap.changeValueAt(tempMap.getPlayerPosition(), MapFlags.EMPTY_SPACE);
 				tempMap = tempMap.changeValueAt(cord, MapFlags.PLAYER_FLAG);
-				System.out.println(tempMap.toString());
 				
 			}
 		} catch (InvalidProtoMapCordinateLengthException e) {
@@ -249,7 +248,9 @@ public class ProtoMap {
 	 * @throws CannotMovePlayerToCoordinateException
 	 */
 	public ProtoMap moveDown() throws CannotMovePlayerToCoordinateException{
-		int[] currPos = this.getPlayerPosition();
+		int[] currPos = new int[2];
+		currPos[0] = this.getPlayerPosition()[0];
+		currPos[1] = this.getPlayerPosition()[1];
 		currPos[0] = currPos[0] + 1;
 		return this.movePTo(currPos);
 	}
@@ -263,7 +264,9 @@ public class ProtoMap {
 	 * @throws CannotMovePlayerToCoordinateException
 	 */
 	public ProtoMap moveRight() throws CannotMovePlayerToCoordinateException {
-		int[] currPos = this.getPlayerPosition();
+		int[] currPos = new int[2];
+		currPos[0] = this.getPlayerPosition()[0];
+		currPos[1] = this.getPlayerPosition()[1];
 		currPos[1] = currPos[1] + 1;
 		return this.movePTo(currPos);
 	}
@@ -277,7 +280,9 @@ public class ProtoMap {
 	 * @throws CannotMovePlayerToCoordinateException
 	 */
 	public ProtoMap moveLeft() throws CannotMovePlayerToCoordinateException {
-		int[] currPos = this.getPlayerPosition();
+		int[] currPos = new int[2];
+		currPos[0] = this.getPlayerPosition()[0];
+		currPos[1] = this.getPlayerPosition()[1];
 		currPos[1] = currPos[1] - 1;
 		return this.movePTo(currPos);
 	}
@@ -291,7 +296,9 @@ public class ProtoMap {
 	 * @throws CannotMovePlayerToCoordinateException
 	 */
 	public ProtoMap moveUp() throws CannotMovePlayerToCoordinateException {
-		int[] currPos = this.getPlayerPosition();
+		int[] currPos = new int[2];
+		currPos[0] = this.getPlayerPosition()[0];
+		currPos[1] = this.getPlayerPosition()[1];
 		currPos[0] = currPos[0] - 1;
 		return this.movePTo(currPos);
 	}
@@ -331,8 +338,6 @@ public class ProtoMap {
 	 * @return boolean representing if the other ProtoMap is the same as the other ProtoMap
 	 */
 	public boolean equals(ProtoMap other) {
-		System.out.println(this.getPlayerPosition()[0] + " : " + other.getPlayerPosition()[0]);
-		System.out.println(this.getPlayerPosition()[1] + " : " + other.getPlayerPosition()[1]);
 		if (this.getPlayerPosition()[0] == other.getPlayerPosition()[0]
 				&& this.getPlayerPosition()[1] == other.getPlayerPosition()[1])
 			return true;
