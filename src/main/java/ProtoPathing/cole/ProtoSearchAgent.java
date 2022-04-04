@@ -35,7 +35,8 @@ public class ProtoSearchAgent {
 				while(this.searchList.size() != 0 && this.gameState == this.searchList.peek()) {
 					this.deadEnds.push(this.gameState);
 					this.searchList.pop();
-					this.gameState = this.newSearchList.pop();
+					this.newSearchList.pop();
+					this.gameState = this.newSearchList.peek();
 				}
 				this.searchList.push(this.gameState);
 			}
