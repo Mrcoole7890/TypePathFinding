@@ -2,15 +2,17 @@ package ProtoPathing.cole;
 
 import java.util.Stack;
 
+import ProtoPathing.cole.MyList.ListType;
+
 public class ProtoSearchAgent {
 
 	private ProtoMap gameState;
 	
 	private Stack<ProtoMap> searchList;
-	private Stack<ProtoMap> newSearchList;
+	private MyList<ProtoMap> newSearchList;
 	private Stack<ProtoMap> deadEnds;
 	
-	public ProtoSearchAgent() {
+	public ProtoSearchAgent(ListType lt) {
 		super();
 		this.gameState = new ProtoMap();
 		
@@ -23,7 +25,7 @@ public class ProtoSearchAgent {
 		}
 		
 		this.searchList = new Stack<ProtoMap>();
-		this.newSearchList = new Stack<ProtoMap>();
+		this.newSearchList = new MyList<ProtoMap>(lt);
 		this.deadEnds = new Stack<ProtoMap>();
 		this.searchList.push(this.gameState);
 		this.newSearchList.push(this.gameState);
@@ -70,13 +72,13 @@ public class ProtoSearchAgent {
 			ProtoMap temp = this.gameState.moveUp();
 			try {
 				temp.setGoalAndPlayer();
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 			} catch (ProtoMapPlayerNotFoundException e) {
 				return false;
 			} catch (ProtoMapGoalNotFoundException e) {
 				temp.goalFound = true;
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 				return true;
 			}
@@ -91,13 +93,13 @@ public class ProtoSearchAgent {
 			ProtoMap temp = this.gameState.moveDown();
 			try {
 				temp.setGoalAndPlayer();
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 			} catch (ProtoMapPlayerNotFoundException e) {
 				return false;
 			} catch (ProtoMapGoalNotFoundException e) {
 				temp.goalFound = true;
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 				return true;
 			}
@@ -113,13 +115,13 @@ public class ProtoSearchAgent {
 			ProtoMap temp = this.gameState.moveLeft();
 			try {
 				temp.setGoalAndPlayer();
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 			} catch (ProtoMapPlayerNotFoundException e) {
 				return false;
 			} catch (ProtoMapGoalNotFoundException e) {
 				temp.goalFound = true;
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 				return true;
 			}
@@ -135,13 +137,13 @@ public class ProtoSearchAgent {
 			ProtoMap temp = this.gameState.moveRight();
 			try {
 				temp.setGoalAndPlayer();
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 			} catch (ProtoMapPlayerNotFoundException e) {
 				return false;
 			} catch (ProtoMapGoalNotFoundException e) {
 				temp.goalFound = true;
-				if (this.isInArray(this.deadEnds, temp) || this.isInArray(this.newSearchList, temp) || this.isInArray(this.searchList, temp)) return false;
+				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
 				this.newSearchList.push(temp);
 				return true;
 			}
