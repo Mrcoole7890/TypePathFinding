@@ -5,6 +5,10 @@ import java.util.Stack;
 import ProtoPathing.cole.MyList.ListType;
 
 public class ProtoSearchAgent {
+	
+	private enum Directions{
+		LEFT,RIGHT,UP,DOWN
+	};
 
 	private ProtoMap gameState;
 	
@@ -59,38 +63,24 @@ public class ProtoSearchAgent {
 	
 	private boolean generateNewStates() {
 		boolean finalState = false;
-		finalState = this.genUp() || finalState;
-		finalState = this.genDown() || finalState;
-		finalState = this.genLeft() || finalState;
-		finalState = this.genRight() || finalState;
+		finalState = this.gen(Directions.UP) || finalState;
+		finalState = this.gen(Directions.DOWN) || finalState;
+		finalState = this.gen(Directions.LEFT) || finalState;
+		finalState = this.gen(Directions.RIGHT) || finalState;
 		return finalState;
 	}
 	
-	private boolean genUp() {
-		
-		try {
-			ProtoMap temp = this.gameState.moveUp();
-			try {
-				temp.setGoalAndPlayer();
-				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
-				this.newSearchList.push(temp);
-			} catch (ProtoMapPlayerNotFoundException e) {
-				return false;
-			} catch (ProtoMapGoalNotFoundException e) {
-				temp.goalFound = true;
-				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
-				this.newSearchList.push(temp);
-				return true;
-			}
-		} catch (CannotMovePlayerToCoordinateException e) {
-			return false;
-		}
-		return true;
-	}
 	
-	private boolean genDown() {
+	private boolean gen(Directions direction) {
 		try {
-			ProtoMap temp = this.gameState.moveDown();
+			ProtoMap temp;
+			switch(direction) {
+			case UP: temp = this.gameState.moveUp(); break;
+			case DOWN: temp = this.gameState.moveDown(); break;
+			case LEFT: temp = this.gameState.moveLeft(); break;
+			case RIGHT: temp = this.gameState.moveRight(); break;
+			default: temp = null;
+			}
 			try {
 				temp.setGoalAndPlayer();
 				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
@@ -108,50 +98,7 @@ public class ProtoSearchAgent {
 		}
 		return true;
 	}
-	
-	private boolean genLeft() {
-		
-		try {
-			ProtoMap temp = this.gameState.moveLeft();
-			try {
-				temp.setGoalAndPlayer();
-				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
-				this.newSearchList.push(temp);
-			} catch (ProtoMapPlayerNotFoundException e) {
-				return false;
-			} catch (ProtoMapGoalNotFoundException e) {
-				temp.goalFound = true;
-				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
-				this.newSearchList.push(temp);
-				return true;
-			}
-		} catch (CannotMovePlayerToCoordinateException e) {
-			return false;
-		}
-		return true;
-	}
-	
-	private boolean genRight() {
-		
-		try {
-			ProtoMap temp = this.gameState.moveRight();
-			try {
-				temp.setGoalAndPlayer();
-				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
-				this.newSearchList.push(temp);
-			} catch (ProtoMapPlayerNotFoundException e) {
-				return false;
-			} catch (ProtoMapGoalNotFoundException e) {
-				temp.goalFound = true;
-				if (this.isInArray(this.deadEnds, temp) || this.newSearchList.inArray(temp) || this.isInArray(this.searchList, temp)) return false;
-				this.newSearchList.push(temp);
-				return true;
-			}
-		} catch (CannotMovePlayerToCoordinateException e) {
-			return false;
-		}
-		return true;
-	}
+
 	
 	private boolean isInArray(Stack<ProtoMap> list, ProtoMap item) {
 		boolean finalBool = false;
