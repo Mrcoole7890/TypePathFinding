@@ -101,7 +101,6 @@ public class ProtoSearchAgent {
 
 	
 	private boolean isInArray(Stack<ProtoMap> list, ProtoMap item) {
-		boolean finalBool = false;
 		for (ProtoMap p: list) {
 			if (p.equals(item)) return true;
 		}
