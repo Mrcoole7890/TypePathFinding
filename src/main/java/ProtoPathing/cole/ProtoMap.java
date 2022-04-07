@@ -10,7 +10,7 @@
  * TODO add exception to be thrown by the changeValueAt() method where a Invalid coordinate is thrown
  * TODO remove constructor with no parameters and all references to it
  * TODO add exception to be thrown by movePTo() if the player flag is not set
- * TODO go through and check java docs for constancy "I believe there are docs that don't reflect the actual actions of the
+ * DONE go through and check java docs for constancy "I believe there are docs that don't reflect the actual actions of the
  *    code"
  */
 
@@ -173,11 +173,8 @@ public class ProtoMap {
 	
 	/**
 	 * 
-	 * @param cord is a 2-d array that described the position of the desired value to be changed
+	 * @param cord is a 2-d array that described the position of the desired value to be changed (cord is expected to be valid)
 	 * @param value is a char that the location in the map is to be set to
-	 * 
-	 * the coordinate that described the position of the char to be changed is set to the value parameter
-	 * if the cord is invalid then the ProtoMap's initial state is to be returned unchanged
 	 * 
 	 * @return a new ProtoMap instance, based on the cord and value, of the desired location to be set to a given char 
 	 */
@@ -196,9 +193,7 @@ public class ProtoMap {
 	/**
 	 * 
 	 * @param cord is the coordinate of the location the player flag is to be moved to
-	 * 
-	 * a new ProtoMap, tempMap, instance is made out of the instance of this instance
-	 * 
+	 *  
 	 * if the value at the given coordinate is an empty space or a goal flag
 	 *  a new instance is created with the given coordinate set to the player flag
 	 *  the new instance is assigned to tempMap
