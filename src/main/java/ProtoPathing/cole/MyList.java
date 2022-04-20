@@ -1,9 +1,10 @@
 package ProtoPathing.cole;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class MyList<h> {
-	public enum ListType{Stack, Queue};
+	public enum ListType{Stack, Queue, Priority};
 	
 	private LinkedList<h> myList;
 	private ListType myType;
