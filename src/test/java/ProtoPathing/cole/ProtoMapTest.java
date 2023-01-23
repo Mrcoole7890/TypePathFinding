@@ -84,6 +84,10 @@ public class ProtoMapTest {
 	    String expected = "";
 	    for(String s: testMap) expected += s + "\n";
 	    
+	    // delete file created
+	    File fileToDelete = new File(pathToTestFile);
+	    fileToDelete.delete();
+	    
 	    assertEquals(mapToTestAsString, expected);
 	}
 	
